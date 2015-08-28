@@ -11,6 +11,9 @@ import static com.fclub.tpd.common.SystemConstant.COOKIE_PATH;
 import static com.fclub.tpd.common.SystemConstant.COOKIE_PROVIDER_ID;
 import static java.lang.System.getProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,9 +26,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fclub.common.log.LogUtil;
 import com.fclub.tpd.biz.LogService;
 import com.fclub.tpd.biz.ProviderService;
+import com.fclub.tpd.controller.RegionController.ShippingFeeConfig;
+import com.fclub.tpd.dataobject.DeliveryArea;
 import com.fclub.tpd.dataobject.Provider;
 import com.fclub.tpd.dataobject.erp.Admin;
 import com.fclub.tpd.helper.CookieHelper;
+import com.fclub.tpd.helper.JsonUtil;
 import com.fclub.tpd.helper.SessionHelper;
 import com.fclub.tpd.mapper.AdminMapper;
 import com.fclub.web.util.WebUtil;
@@ -219,7 +225,10 @@ public class LoginController {
         		return false;
         	}
         	provider.setUserName(userName);
+        	
         }
+        // 设置配送区域
+        provider.setDeliveryArea(genProviderDeliveryArea(provider));
 
         password = CookieHelper.md5(password);
         boolean login = doLogin(provider, password, false, request);
@@ -234,7 +243,40 @@ public class LoginController {
 
         return login;
     }
-
+    private DeliveryArea genProviderDeliveryArea(Provider provider){
+    	DeliveryArea deliveryArea = new DeliveryArea(
+		    			getMyList(provider.getSendCountry()),
+		    			getMyList(provider.getSendProvince()),
+		    			getMyList(provider.getSendCity()),
+		    			getMyList(provider.getSendDistrict())
+    			
+    			);
+    	
+		// set ids
+		deliveryArea.setParentId(provider.getParentId());
+		deliveryArea.setProviderId(provider.getProviderId());
+		LOGGER.debug("DELIVERY ############country##########={0}", deliveryArea.getSendCountryList().toString());
+		LOGGER.debug("DELIVERY #############province##########={0}", deliveryArea.getSendProvinceList().toString());
+		return deliveryArea;
+    	
+    }
+    private List<Object> getMyList(String str){
+    	List<Object> list = new ArrayList<Object>();  ;
+    	LOGGER.debug("str={0}！@DeliveryArea:LoginController", str);
+		if (str != null && str.trim() != "") {
+			try {
+				String[] areas =  str.split(",");
+				for( String text: areas){
+					if ( text == null || text == "") continue;
+					list.add(text);
+				}
+			} catch (Exception e) {
+				LOGGER.error("解析JSON数据错误！@DeliveryArea:LoginController", e);
+			}
+		}
+		return list;
+    	
+    }
     private boolean doLogin(Provider provider, String password, boolean pwdEncoded, HttpServletRequest request) {
         // validate user status
         if (Boolean.TRUE.equals(provider.getProviderStatus())) {

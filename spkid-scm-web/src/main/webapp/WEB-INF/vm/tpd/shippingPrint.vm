@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>妈咪树第三方平台装箱单打印</title>
+<title>悦牙网供应商平台装箱单打印</title>
 <style type="text/css">
 *{margin:0;padding:0;}
 body{font-size:14px;}
@@ -127,7 +127,7 @@ window.onload=function(){window.print()}
 		<tr>
 			<td style="padding-bottom:10px;">
 				<p>亲爱的会员：</p>
-				<p>感谢您对妈咪树的支持，我们期待您的再次光临！</p>
+				<p>感谢您对悦牙网的支持，我们期待您的再次光临！</p>
 				<p>您可登录会员中心查询订单详情</p>
 			</td>
 		</tr>

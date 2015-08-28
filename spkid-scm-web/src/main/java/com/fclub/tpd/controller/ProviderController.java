@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.alipay.util.AlipayNotify;
 import com.fclub.common.dal.Page;
+import com.fclub.common.lang.BizException;
 import com.fclub.common.lang.utils.DateUtil;
 import com.fclub.common.lang.utils.ImageUtil;
 import com.fclub.common.lang.utils.StringUtil;
@@ -68,6 +69,9 @@ public class ProviderController {
 
 	@RequestMapping("/editTo.htm")
 	public String editTo(ModelMap modelMap, Integer providerId) {
+		if( SessionHelper.getProvider().getRealProviderId() != providerId)
+			throw new BizException("此功能仅对上级商家有效！");
+		
 		setModelMap(modelMap, providerId);
 		return "tpd/providerEdit";
 	}

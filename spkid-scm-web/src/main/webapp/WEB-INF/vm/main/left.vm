@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" style="overflow-x:hidden;overflow-y:auto;">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>妈咪树-供应商平台管理系统</title>
+<title>悦牙网 - 供应商发货系统</title>
 <link href="/css/common.css" rel="stylesheet" type="text/css"/>
 <link href="/css/core.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="/js/jquery-1.7.1.js"></script>
@@ -47,10 +47,13 @@
     			<dd >
     				<a href="/provider/main.htm" target="mainFrame" title="" hidefocus="true"><s></s>基本信息</a>
     			</dd>
+    			<!--
     			<dd >
     				<a href="/provider/account.htm" target="mainFrame" title="" hidefocus="true"><s></s>帐户管理</a>
     			</dd>
+    			-->
     		</dl>
+    		<!--
     		<dl>
     			<dt class="bold">
     				<s class="icon_yygl"></s>
@@ -66,6 +69,8 @@
     				<a href="/notice/list/main.htm" target="mainFrame" title="" hidefocus="true"><s></s>系统公告</a>
     			</dd>
     		</dl>
+    		-->
+    		<!--
     		<dl>
     			<dt class="bold">
     				<s class="icon_spgl"></s>
@@ -89,6 +94,7 @@
     			</dd>
 				*#
     		</dl>
+    		-->
     		<dl>
     			<dt class="bold">
     				<s class="icon_fhgl"></s>
@@ -110,6 +116,7 @@
     				<a href="/orderreturnquery/list/main.htm" target="mainFrame" title="" hidefocus="true"><s></s>订单/退货单查询</a>
     			</dd>
     		</dl>
+    		<!--
 			<dl>
     			<dt class="bold">
     				<s class="icon_fhgl"></s>
@@ -128,6 +135,8 @@
     				<a href="/mamituan/list/main.htm" target="mainFrame" title="" hidefocus="true"><s></s>团购管理</a>
     			</dd>*#
     		</dl>
+    		-->
+    		<!--
     		#*
     		<dl>
     			<dt class="bold">
@@ -139,6 +148,7 @@
     			</dd>
     		</dl>
     		*#
+    		-->
 		#end
     </div>
     <div class="shadow"></div>

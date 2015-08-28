@@ -16,6 +16,8 @@ import com.fclub.common.dal.Page;
 import com.fclub.tpd.biz.ShippingPacketService;
 import com.fclub.tpd.dataobject.ShippingProduct;
 import com.fclub.tpd.dataobject.ShippingPacket;
+import com.fclub.tpd.dataobject.DeliveryArea;
+import com.fclub.tpd.dataobject.Provider;
 import com.fclub.tpd.dto.ShippingStatDTO;
 import com.fclub.tpd.mapper.ShippingPacketMapper;
 
@@ -113,13 +115,13 @@ public class ShippingPacketServiceImpl implements ShippingPacketService {
     }
 
     @Override
-    public List<ShippingPacket> getExportOrder(Integer providerId) {
-        return shippingPacketMapper.getExportOrder(providerId);
+    public List<ShippingPacket> getExportOrder(DeliveryArea deliveryArea) {
+        return shippingPacketMapper.getExportOrder(deliveryArea);
     }
 
     @Override
-    public Integer getExportOrderNum(Integer providerId) {
-        return shippingPacketMapper.getExportOrderNum(providerId);
+    public Integer getExportOrderNum(DeliveryArea deliveryArea) {
+        return shippingPacketMapper.getExportOrderNum(deliveryArea);
     }
 
     @Override

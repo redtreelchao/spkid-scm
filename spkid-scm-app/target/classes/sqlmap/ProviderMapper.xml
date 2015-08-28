@@ -41,6 +41,12 @@
     	<result column="provider_ad_edate" property="providerAdEdate" jdbcType="TIMESTAMP" />
     	<result column="account_balance" property="accountBalance" jdbcType="NUMERIC" />
     	<result column="sms_price" property="smsPrice" jdbcType="NUMERIC" />
+    	<result column="send_country" property="sendCountry" jdbcType="VARCHAR" />
+    	<result column="send_province" property="sendProvince" jdbcType="VARCHAR" />
+    	<result column="send_city" property="sendCity" jdbcType="VARCHAR" />
+    	<result column="send_district" property="sendDistrict" jdbcType="VARCHAR" />
+    	<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    	<result column="parent_provider_name" property="parentProviderName" jdbcType="INTEGER" />
 	</resultMap>
 	
 	<update id="update" parameterType="com.fclub.tpd.dataobject.Provider">
@@ -75,15 +81,14 @@
 	</update>
 	
 	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-		select * 
-		from ty_product_provider
-		where provider_id = #{id,jdbcType=INTEGER}
+		SELECT p1.* ,p2.provider_name AS parent_provider_name
+	  	FROM ty_product_provider AS p1 LEFT JOIN ty_product_provider AS p2 ON p1.`parent_id`=p2.`provider_id`
+	  	WHERE p1.provider_id = #{id,jdbcType=INTEGER}
 	</select>
 	
   	<select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
-	  	select * 
-	  	from ty_product_provider
-	  	where user_name = #{_parameter,jdbcType=VARCHAR}
-  	</select>
-  
+	  	SELECT p1.* ,p2.provider_name AS parent_provider_name
+	  	FROM ty_product_provider AS p1 LEFT JOIN ty_product_provider AS p2 ON p1.`parent_id`=p2.`provider_id`
+	  	WHERE p1.user_name = #{_parameter,jdbcType=VARCHAR}
+  	</select>  
 </mapper>

@@ -9,6 +9,8 @@ import java.util.List;
 import com.fclub.common.dal.Page;
 import com.fclub.tpd.dataobject.ShippingProduct;
 import com.fclub.tpd.dataobject.ShippingPacket;
+import com.fclub.tpd.dataobject.DeliveryArea;
+import com.fclub.tpd.dataobject.Provider;
 import com.fclub.tpd.dto.ShippingStatDTO;
 
 /**
@@ -51,12 +53,12 @@ public interface ShippingPacketService {
     /**
      * 获取供应商当前需发货的订单数量
      */
-    Integer getExportOrderNum(Integer providerId);
+    Integer getExportOrderNum(DeliveryArea deliveryArea);
     
     /**
      * 获取供应商当前需发货的订单
      */
-    List<ShippingPacket> getExportOrder(Integer providerId);
+    List<ShippingPacket> getExportOrder(DeliveryArea deliveryArea);
 
     /**
      * 查询供应商包裹

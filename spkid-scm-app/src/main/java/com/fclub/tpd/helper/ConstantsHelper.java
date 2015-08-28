@@ -129,4 +129,16 @@ public class ConstantsHelper {
     public static String getVoucherCampaignLogoUploadPath() {
         return getPicRootPath() + getVoucherCampaignLogoPath();
     }
+    public static Integer getAutoinCooperationId(){
+    	return Integer.valueOf(getPram(SystemConstant.AUTOIN_COOPERATION_ID));
+    }
+    public static Integer getAutoinDepotId(){
+    	return Integer.valueOf(getPram(SystemConstant.AUTOIN_DEPOT_ID));
+    }
+    public static Integer getAutoinDepotLocation(){
+    	return Integer.valueOf(getPram(SystemConstant.AUTOIN_DEPOT_LOCATION));
+    }
+    public static Integer getAutoinIOType(){
+    	return Integer.valueOf(getPram(SystemConstant.AUTOIN_IOTYPE));
+    }
 }

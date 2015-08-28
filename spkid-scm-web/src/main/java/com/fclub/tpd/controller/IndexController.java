@@ -32,6 +32,7 @@ public class IndexController {
     @RequestMapping("/main/top.htm")
     public String top(ModelMap model) {
         List<Notice> list = noticeService.queryTop();
+        model.put("provider", SessionHelper.getProvider());
         model.put("list", list);
         return "main/top";
     }
@@ -48,8 +49,7 @@ public class IndexController {
 
     @RequestMapping("/main/main.htm")
     public String main(ModelMap modelMap) {
-        Integer orderNum = shippingPacketService.getExportOrderNum(SessionHelper.getProvider()
-            .getProviderId());
+        Integer orderNum = shippingPacketService.getExportOrderNum(SessionHelper.getProvider().getDeliveryArea());
         modelMap.put("orderNum", orderNum);
         return "tpd/shippingWave";
     }

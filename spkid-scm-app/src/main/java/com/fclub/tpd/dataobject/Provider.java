@@ -3,9 +3,14 @@ package com.fclub.tpd.dataobject;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import com.fclub.tpd.dataobject.DeliveryArea;
+
+
+
 
 /**
  * 供应商
@@ -71,13 +76,89 @@ public class Provider implements Serializable {
     private Double 			  accountBalance;
     private Double 			  smsPrice;
     
-    /* ---- extend methods ---- */
+    // 发货商
+    private Integer			  parentId;
+    private String 			  sendCountry;
+	private String 			  sendProvince;
+	private String 			  sendCity;
+	private String 			  sendDistrict;
+	private String 		parentProviderName;
+	
+	private DeliveryArea 		deliveryArea;
+	
+
+	public DeliveryArea getDeliveryArea() {
+		return deliveryArea;
+	}
+
+	public void setDeliveryArea(DeliveryArea deliveryArea) {
+		this.deliveryArea = deliveryArea;
+	}
+	
+	
+	public void setParentProviderName(String parentProviderName) {
+		this.parentProviderName = parentProviderName;
+	}	
+
+	
+	public String getParentProviderName(){
+		return this.parentProviderName;
+	}
+	
+	public Boolean hasParent(){
+		return this.parentId > 0;
+	}
+	/* ---- extend methods ---- */
+	public String getSendCountry() {
+		return sendCountry;
+	}
+
+	public void setSendCountry(String sendCountry) {
+		this.sendCountry = sendCountry;
+	}
+
+	public String getSendProvince() {
+		return sendProvince;
+	}
+
+	public void setSendProvince(String sendProvince) {
+		this.sendProvince = sendProvince;
+	}
+
+	public String getSendCity() {
+		return sendCity;
+	}
+
+	public void setSendCity(String sendCity) {
+		this.sendCity = sendCity;
+	}
+
+	public String getSendDistrict() {
+		return sendDistrict;
+	}
+
+	public void setSendDistrict(String sendDistrict) {
+		this.sendDistrict = sendDistrict;
+	}
+    
+    
     public boolean isAdmin() {
     	return adminId != null && adminId.intValue() > 0;
     }
     
+    public Integer getParentId(){
+    	return parentId;
+    }
+    public Integer getRealProviderId(){
+    	 return this.providerId;
+    }
+    
+    public void setParentId(Integer parentId) {
+    	this.parentId = parentId;
+    }
     public Integer getProviderId() {
-		return providerId;
+    	if( this.parentId > 0) return this.parentId;
+    	else return providerId;
 	}
 
 	public void setProviderId(Integer providerId) {

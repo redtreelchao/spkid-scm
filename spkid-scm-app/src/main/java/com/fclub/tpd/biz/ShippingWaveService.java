@@ -7,6 +7,7 @@ package com.fclub.tpd.biz;
 import java.util.List;
 
 import com.fclub.common.dal.Page;
+import com.fclub.tpd.dataobject.DeliveryArea;
 import com.fclub.tpd.dataobject.ShippingWave;
 import com.fclub.tpd.dto.ShippingImportDTO;
 
@@ -43,7 +44,7 @@ public interface ShippingWaveService {
     /**
      * 生成波次
      */
-    void generateWave(Integer providerId);
+    void generateWave(DeliveryArea deliveryArea);
 
     /**
      * 批量发货

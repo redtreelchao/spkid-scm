@@ -28,6 +28,7 @@ import com.fclub.common.lang.utils.RandomUtils;
 import com.fclub.tpd.biz.ShippingPacketService;
 import com.fclub.tpd.biz.ShippingService;
 import com.fclub.tpd.biz.ShippingWaveService;
+import com.fclub.tpd.dataobject.DeliveryArea;
 import com.fclub.tpd.dataobject.Provider;
 import com.fclub.tpd.dataobject.Shipping;
 import com.fclub.tpd.dataobject.ShippingPacket;
@@ -37,6 +38,7 @@ import com.fclub.tpd.dataobject.erp.DepotInSub;
 import com.fclub.tpd.dataobject.erp.GoodsEntity;
 import com.fclub.tpd.dataobject.erp.Transaction;
 import com.fclub.tpd.dto.ShippingImportDTO;
+import com.fclub.tpd.helper.ConstantsHelper;
 import com.fclub.tpd.mapper.DepotInLeafMapper;
 import com.fclub.tpd.mapper.DepotInMainMapper;
 import com.fclub.tpd.mapper.DepotInSubMapper;
@@ -108,11 +110,12 @@ public class ShippingWaveServiceImpl implements ShippingWaveService {
 
     @Override
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public void generateWave(Integer providerId) {
+    public void generateWave(DeliveryArea deliveryArea) {
+    	Integer providerId = deliveryArea.getProviderId();
     	synchronized(getLock(providerId)) {
 	    	
 	    	// 每个波次最多40个订单
-	        List<ShippingPacket> list = shippingPacketService.getExportOrder(providerId);
+	        List<ShippingPacket> list = shippingPacketService.getExportOrder(deliveryArea);
 	        if (list.size() == 0) {
 	            throw new BizException("没有需要导出的订单");
 	        }
@@ -492,13 +495,11 @@ public class ShippingWaveServiceImpl implements ShippingWaveService {
     	//TODO:
     	Provider provider = providerMapper.get(providerId);
     	Integer cooperation = provider.getProviderCooperation();
-    	if (Integer.valueOf(4).equals(cooperation)) { // MT服务（虚库）
-    		return new Integer[]{
-    			Integer.valueOf(1), Integer.valueOf(1), Integer.valueOf(20)
-    		};
-    	} else if (Integer.valueOf(6).equals(cooperation)) { // MT代销（虚库）
-    		return new Integer[]{
-    			Integer.valueOf(7), Integer.valueOf(6), Integer.valueOf(21)
+    	Integer autoinCooperation = ConstantsHelper.getAutoinCooperationId();
+    	if (autoinCooperation == cooperation) { // MT服务（虚库）
+    		return new Integer[]{ConstantsHelper.getAutoinDepotId(),
+    				ConstantsHelper.getAutoinDepotLocation(),
+    				ConstantsHelper.getAutoinIOType()
     		};
     	} else {
     		throw new BizException("供应商合作方式错误，不能发货！");

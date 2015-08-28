@@ -23,7 +23,7 @@
 		<table width="100%" align="center" cellspacing="0" cellpadding="0">
 			<tr>
 				<td class="bold" align="right" width="20%">店铺名称：</td>
-				<td width="30%">$!provider.displayName</td>
+				<td width="30%"><span>$!provider.parentProviderName</span>$!provider.displayName</td>
 				<td class="bold" align="right" width="20%">店铺Logo：</td>
 				<td><img src="${tpdHelper.getImageDomain()}/$!provider.logo" width="76" height="38"/></td>
 			</tr>

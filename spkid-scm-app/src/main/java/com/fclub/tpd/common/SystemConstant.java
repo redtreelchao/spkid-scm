@@ -87,5 +87,11 @@ public class SystemConstant {
     public static final String REMOTE_IMAGESERVICE_IP                  = "fclub.remote.imageserver.ip";
     public static final String REMOTE_IMAGESERVICE_PORT                = "fclub.remote.imageserver.port";
     public static final String REMOTE_IMAGESERVICE_CPU                 = "fclub.remote.imageserver.cpu";
+
+    // 三方发货自动根据订单自动入库配置
+    public static final String AUTOIN_COOPERATION_ID                = "fclub.autoin.cooperation";
+    public static final String AUTOIN_DEPOT_ID                 		= "fclub.autoin.depot.id";
+    public static final String AUTOIN_DEPOT_LOCATION                = "fclub.autoin.depot.location";
+    public static final String AUTOIN_IOTYPE                 		= "fclub.autoin.depot.iotype";
     
 }

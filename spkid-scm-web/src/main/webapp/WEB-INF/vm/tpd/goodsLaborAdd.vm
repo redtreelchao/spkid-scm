@@ -70,7 +70,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="label dark_blue">供应商条码(妈咪树条码)</td>
+				<td class="label dark_blue">供应商条码(悦牙网条码)</td>
 				<td>
 					<input type="text"  class="inputBorder" name="providerBarcode" id="providerBarcode" />
 					<span id="providerBarcodeTip" style="display:none" class="red_dian"></span>

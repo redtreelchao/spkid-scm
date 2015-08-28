@@ -127,35 +127,78 @@
 		where t.provider_id = #{providerId,jdbcType=INTEGER}
 		and o.order_sn = #{orderSn,jdbcType=VARCHAR}
 	</select>
-	
-	<select id="getExportOrder" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<sql id="delivery_provider_id">
+	   	<if test="parentId >0">
+		  #{parentId,jdbcType=VARCHAR}
+		</if>
+		<if test="parentId == 0">
+		 #{providerId,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<sql id="where_delivery_area">
+
+		and ( 
+		<if test="parentId ==0">1</if><if test="parentId >0">0</if>
+		<if test="hasArea and parentId ==0">AND (</if><if test="hasArea and parentId >0">OR (</if>
+		<trim prefix="" prefixOverrides="and|or">  
+		<if test="hasSendCountry">
+		    oi.country in
+		    <foreach collection="sendCountryList" index="index" item="item" open="(" separator="," close=")">
+		    	#{item}
+		    </foreach>
+		</if>
+		<if test="hasSendProvince">
+		    OR oi.province in
+		    <foreach collection="sendProvinceList" index="index" item="item" open="(" separator="," close=")">
+		    	#{item}
+		    </foreach>
+		</if>
+		<if test="hasSendCity">
+		    OR oi.city in
+		    <foreach collection="sendCityList" index="index" item="item" open="(" separator="," close=")">
+		    	#{item}
+		    </foreach>
+		</if>
+		<if test="hasSendDistrict">
+		    OR oi.district in
+		    <foreach collection="sendDistrictList" index="index" item="item" open="(" separator="," close=")">
+		    	#{item}
+		    </foreach>
+		</if>
+		</trim>
+		<if test="hasArea">)</if>
+		)
+	</sql>
+	<select id="getExportOrder" resultMap="BaseResultMap" parameterType="com.fclub.tpd.dataobject.DeliveryArea">
 		SELECT 
 			oi.order_id,oi.shipping_fee,og.op_id
         FROM ty_order_info as oi 
         LEFT JOIN ty_order_product as og ON og.order_id = oi.order_id 
         LEFT JOIN ty_product_info as g ON g.product_id = og.product_id 
-        WHERE oi.order_status = 1 
+        WHERE g.provider_id = <include refid="delivery_provider_id" />
+        <include refid="where_delivery_area" />
+        AND oi.order_status = 1 
 <!--         AND oi.sale_type = 2  -->
         AND oi.shipping_status = 0 
         AND oi.pay_status = 1 
         AND oi.lock_admin = 0 
-        AND g.provider_id = #{providerId,jdbcType=INTEGER}
         AND NOT EXISTS (
         	SELECT 1 FROM ty_scm_shipping_packet as psp 
-        	WHERE psp.provider_id = #{providerId,jdbcType=INTEGER}
+        	WHERE psp.provider_id = <include refid="delivery_provider_id" />
         	AND psp.order_id = oi.order_id
         )
         ORDER BY oi.confirm_date ASC
 	</select>
 	
-	<select id="getExportOrderNum" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+	<select id="getExportOrderNum" resultType="java.lang.Integer" parameterType="com.fclub.tpd.dataobject.DeliveryArea">
 		SELECT 
 			COUNT(DISTINCT og.order_id) 
 		FROM ty_order_product og 
         LEFT JOIN ty_order_info oi ON oi.order_id = og.order_id
 		LEFT JOIN ty_product_info AS g ON g.product_id = og.product_id 
 		WHERE
-        	g.provider_id = #{providerId,jdbcType=INTEGER}
+g.provider_id = <include refid="delivery_provider_id" />
+		<include refid="where_delivery_area" />
 	        AND oi.order_status = 1 
 <!-- 			AND oi.sale_type = 2  -->
 			AND oi.shipping_status = 0 
@@ -163,7 +206,7 @@
 			AND oi.lock_admin = 0 
 	        AND NOT EXISTS (
 				SELECT 1 FROM ty_scm_shipping_packet AS psp 
-				WHERE psp.provider_id = #{providerId,jdbcType=INTEGER} 
+				WHERE psp.provider_id =<include refid="delivery_provider_id" />
 				AND psp.order_id = og.order_id 
 			)
 	</select>
@@ -313,7 +356,6 @@
 			g.shop_price,
 			gl.provider_barcode,
 			gl.scm_provider_barcode,
-			
 			oi.order_sn, oi.create_date as order_add_time,
 			oi.address, oi.confirm_date as order_confirm_time,
 			oi.consignee,oi.mobile,oi.tel,oi.best_time,oi.user_notice,s.shipping_name,

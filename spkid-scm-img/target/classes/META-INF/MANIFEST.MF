@@ -1,0 +1,59 @@
+Manifest-Version: 1.0
+Built-By: oswell
+Class-Path: dependency/spkid-scm-app-1.0.2.jar dependency/mail-1.4.1.j
+ ar dependency/activation-1.1.jar dependency/commons-1.0.jar dependenc
+ y/commons-logging-1.1.jar dependency/log4j-1.2.12.jar dependency/logk
+ it-1.0.1.jar dependency/avalon-framework-4.1.3.jar dependency/commons
+ -pool-1.5.4.jar dependency/commons-dbcp-1.4.jar dependency/c3p0-0.9.1
+ .jar dependency/mybatis-3.0.5.jar dependency/mybatis-spring-1.0.1.jar
+  dependency/mysql-connector-java-5.1.16.jar dependency/commons-beanut
+ ils-1.8.3.jar dependency/commons-collections-3.2.jar dependency/commo
+ ns-lang-2.4.jar dependency/commons-io-1.4.jar dependency/commons-http
+ client-3.1.jar dependency/spring-webmvc-3.0.6.RELEASE.jar dependency/
+ spring-web-3.0.6.RELEASE.jar dependency/aopalliance-1.0.jar dependenc
+ y/spring-core-3.0.6.RELEASE.jar dependency/spring-test-3.0.6.RELEASE.
+ jar dependency/spring-aop-3.0.6.RELEASE.jar dependency/spring-orm-3.0
+ .6.RELEASE.jar dependency/spring-security-core-3.0.6.RELEASE.jar depe
+ ndency/aspectjrt-1.6.8.jar dependency/aspectjweaver-1.6.8.jar depende
+ ncy/spring-security-web-3.0.6.RELEASE.jar dependency/spring-security-
+ config-3.0.6.RELEASE.jar dependency/spring-expression-3.0.6.RELEASE.j
+ ar dependency/spring-context-3.0.6.RELEASE.jar dependency/spring-cont
+ ext-support-3.0.6.RELEASE.jar dependency/spring-beans-3.0.6.RELEASE.j
+ ar dependency/spring-asm-3.0.6.RELEASE.jar dependency/spring-tx-3.0.6
+ .RELEASE.jar dependency/spring-jdbc-3.0.6.RELEASE.jar dependency/cxf-
+ rt-frontend-jaxws-2.7.0.jar dependency/xml-resolver-1.2.jar dependenc
+ y/asm-3.3.1.jar dependency/cxf-api-2.7.0.jar dependency/woodstox-core
+ -asl-4.1.4.jar dependency/stax2-api-3.1.1.jar dependency/xmlschema-co
+ re-2.0.3.jar dependency/geronimo-javamail_1.4_spec-1.7.1.jar dependen
+ cy/wsdl4j-1.6.2.jar dependency/cxf-rt-core-2.7.0.jar dependency/jaxb-
+ impl-2.1.13.jar dependency/cxf-rt-bindings-soap-2.7.0.jar dependency/
+ cxf-rt-databinding-jaxb-2.7.0.jar dependency/cxf-rt-bindings-xml-2.7.
+ 0.jar dependency/cxf-rt-frontend-simple-2.7.0.jar dependency/cxf-rt-w
+ s-addr-2.7.0.jar dependency/cxf-rt-ws-policy-2.7.0.jar dependency/nee
+ thi-3.0.2.jar dependency/cxf-rt-transports-http-2.7.0.jar dependency/
+ cxf-rt-ws-security-2.7.0.jar dependency/ehcache-core-2.5.1.jar depend
+ ency/wss4j-1.6.8.jar dependency/xmlsec-1.5.3.jar dependency/opensaml-
+ 2.5.1-1.jar dependency/openws-1.4.2-1.jar dependency/xmltooling-1.3.2
+ -1.jar dependency/joda-time-1.6.2.jar dependency/slf4j-log4j12-1.3.0.
+ jar dependency/slf4j-api-1.3.0.jar dependency/commons-configuration-1
+ .5.jar dependency/commons-beanutils-core-1.7.0.jar dependency/velocit
+ y-tools-2.0.jar dependency/commons-chain-1.1.jar dependency/commons-v
+ alidator-1.3.1.jar dependency/dom4j-1.1.jar dependency/sslext-1.2-0.j
+ ar dependency/struts-core-1.3.8.jar dependency/antlr-2.7.2.jar depend
+ ency/struts-taglib-1.3.8.jar dependency/struts-tiles-1.3.8.jar depend
+ ency/velocity-1.5.jar dependency/jackson-core-lgpl-1.6.1.jar dependen
+ cy/jackson-mapper-lgpl-1.6.1.jar dependency/oro-2.0.8.jar dependency/
+ Mcrypt-1.0.jar dependency/thumbnailator-0.4.2.jar dependency/poi-3.8.
+ jar dependency/opencsv-2.0.jar dependency/xmemcached-1.3.8.jar depend
+ ency/spymemcached-2.8.4.jar dependency/quartz-1.8.5.jar dependency/jt
+ a-1.1.jar dependency/cglib-nodep-2.2.jar dependency/saxon-dom-8.7.jar
+  dependency/saxon-8.7.jar dependency/saxon-xpath-8.7.jar dependency/j
+ xls-core-1.0.jar dependency/commons-digester-2.0.jar dependency/commo
+ ns-jexl-2.0.1.jar dependency/poi-ooxml-3.7.jar dependency/poi-ooxml-s
+ chemas-3.7.jar dependency/xmlbeans-2.3.0.jar dependency/stax-api-1.0.
+ 1.jar dependency/geronimo-stax-api_1.0_spec-1.0.jar dependency/jxl-2.
+ 6.jar dependency/commons-codec-1.6.jar
+Build-Jdk: 1.8.0_40
+Created-By: Maven Integration for Eclipse
+Main-Class: com.fclub.erp.run.Startup
+

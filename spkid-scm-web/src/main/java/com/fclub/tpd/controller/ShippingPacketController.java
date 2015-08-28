@@ -25,6 +25,7 @@ import com.fclub.tpd.biz.ShippingPacketService;
 import com.fclub.tpd.common.jxl.JxlsUtil;
 import com.fclub.tpd.dataobject.ShippingProduct;
 import com.fclub.tpd.dataobject.ShippingPacket;
+import com.fclub.tpd.dataobject.DeliveryArea;
 import com.fclub.tpd.dto.ShippingStatDTO;
 import com.fclub.tpd.helper.SessionHelper;
 import com.fclub.tpd.view.ShippingWaveExcelView;

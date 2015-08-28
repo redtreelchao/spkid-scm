@@ -68,8 +68,7 @@ public class ShippingWaveController {
 
     @RequestMapping("/list/main.htm")
     public String main(ModelMap modelMap) {
-        Integer orderNum = shippingPacketService.getExportOrderNum(SessionHelper.getProvider()
-            .getProviderId());
+        Integer orderNum = shippingPacketService.getExportOrderNum(SessionHelper.getProvider().getDeliveryArea());
         modelMap.put("orderNum", orderNum);
         return "tpd/shippingWave";
     }
@@ -87,8 +86,7 @@ public class ShippingWaveController {
     @ResponseBody
     public Integer getOrderNum() {
         try {
-            return shippingPacketService.getExportOrderNum(SessionHelper.getProvider()
-                .getProviderId());
+            return shippingPacketService.getExportOrderNum(SessionHelper.getProvider().getDeliveryArea());
         } catch (Exception e) {
             logger.warn("get order num error: ", e);
             return 0;
@@ -144,7 +142,7 @@ public class ShippingWaveController {
     @ResponseBody
     public String generateWave() throws Exception {
         try {
-            shippingWaveService.generateWave(SessionHelper.getProvider().getProviderId());
+            shippingWaveService.generateWave(SessionHelper.getProvider().getDeliveryArea());
         } catch (Exception e) {
             return e.getMessage();
         }
