@@ -1,0 +1,8 @@
+
+spkid-scm-app/target/classes/spkid.properties
+
+spkid-scm-app/target/classes/META-INF/maven/com.spkid/spkid-scm-app/pom.properties
+
+spkid-scm-img/target/classes/META-INF/maven/com.spkid/spkid-scm-img/pom.properties
+
+spkid-scm-web/target/m2e-wtp/web-resources/META-INF/maven/com.spkid/spkid-scm-web/pom.properties
